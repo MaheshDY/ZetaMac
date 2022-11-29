@@ -1,41 +1,63 @@
 package com.example.sup.model;
 
+import com.example.sup.validation.ValidDivMax;
+import com.example.sup.validation.ValidMin;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table
 public class Game {
 
   @Id
-  long id;
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Game_GEN")
+  @SequenceGenerator(name = "Game_GEN", sequenceName = "Game_SEQ")
+  @Column(name = "id", nullable = false)
+  private Long id;
 
-  boolean add;
-  int addLeftMin;
-  int addLeftMax;
-  int addRightMin;
-  int addRigthMax;
+  private boolean add;
+  @ValidMin
+  private int addLeftMin;
+  private int addLeftMax;
+  @ValidMin
+  private int addRightMin;
+  private int addRightMax;
 
-  boolean sub;
-  int subLeftMin;
-  int subLeftMax;
-  int subRightMin;
-  int subRightMax;
+  private boolean sub;
+  @ValidMin
+  private int subLeftMin;
+  private int subLeftMax;
+  @ValidMin
+  private int subRightMin;
+  private int subRightMax;
 
-  boolean mul;
-  int mulLeftMin;
-  int mulLeftMax;
-  int mulRightMin;
-  int mulRightMax;
+  private boolean mul;
+  @ValidMin
+  private int mulLeftMin;
+  private int mulLeftMax;
+  @ValidMin
+  private int mulRightMin;
+  private int mulRightMax;
 
-  boolean div;
-  int divLeftMin;
-  int divLeftMax;
-  int divRightMin;
-  int divRightMax;
+  private boolean div;
+  @ValidMin
+  private int divLeftMin;
+  private int divLeftMax;
+  @ValidMin
+  private int divRightMin;
+  @ValidDivMax
+  private int divRightMax;
 }

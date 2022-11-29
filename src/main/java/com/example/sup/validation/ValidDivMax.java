@@ -6,10 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import javax.validation.Constraint;
 
-@Constraint(validatedBy = MinimumNumberValidator.class)
+@Constraint(validatedBy = DivMaxValidator.class)
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidMin {
+public @interface ValidDivMax {
 
-  String message() default "Invalid left minimum number";
+  String message() default "Cant divide a number by zero";
 }
